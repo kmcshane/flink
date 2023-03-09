@@ -1,0 +1,19 @@
+name: Flaky Test Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Test without NonDex
+        run: mvn -pl flink-kubernetes test -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
+      - name: Test without NonDex
+        run: mvn -pl flink-kubernetes edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
