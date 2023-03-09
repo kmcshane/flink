@@ -18,4 +18,4 @@ jobs:
       - name: Test without NonDex
         run: mvn -pl flink-kubernetes test -Dspotless.check.skip=true -Dcheckstyle.skip -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
       - name: Test with NonDex
-        run: mvn -pl flink-kubernetes edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dspotless.check.skip=true -Dcheckstyle.skip -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
+        run: mvn -pl flink-kubernetes edu.illinois:nondex-maven-plugin:2.1.1:nondex -DnondexRuns=10 -Dspotless.check.skip=true -Dcheckstyle.skip -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
