@@ -16,6 +16,6 @@ jobs:
       - name: Build
         run: mvn clean install -Dspotless.check.skip=true -DskipTests -Dcheckstyle.skip -pl flink-kubernetes -am
       - name: Test without NonDex
-        run: mvn -pl flink-kubernetes test -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
+        run: mvn -pl flink-kubernetes test -Dcheckstyle.skip -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
       - name: Test with NonDex
-        run: mvn -pl flink-kubernetes edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
+        run: mvn -pl flink-kubernetes edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dcheckstyle.skip -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
