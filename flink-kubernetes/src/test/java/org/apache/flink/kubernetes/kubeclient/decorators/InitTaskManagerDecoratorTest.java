@@ -272,6 +272,10 @@ class InitTaskManagerDecoratorTest extends KubernetesTaskManagerTestBase {
 
     @Test
     void testNodeAffinity() {
+        List<String> blockedNodesList = 
+            new ArrayList<>(BLOCKED_NODES);
+        Collections.sort(blockedNodesList);
+
         List<NodeSelectorTerm> nodeSelectorTerms =
                 this.resultPod
                         .getSpec()
@@ -288,6 +292,6 @@ class InitTaskManagerDecoratorTest extends KubernetesTaskManagerTestBase {
                                 flinkConfig.getString(
                                         KubernetesConfigOptions.KUBERNETES_NODE_NAME_LABEL),
                                 "NotIn",
-                                new ArrayList<>(BLOCKED_NODES)));
+                                blockedNodesList));
     }
 }
