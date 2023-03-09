@@ -14,7 +14,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       - name: Build
-        run: mvn clean install -Dspotless.check.skip=true -DskipTests -pl flink-kubernetes -am
+        run: mvn clean install -Dspotless.check.skip=true -DskipTests -Dcheckstyle.skip -pl flink-kubernetes -am
       - name: Test without NonDex
         run: mvn -pl flink-kubernetes test -Dtest=org.apache.flink.kubernetes.kubeclient.decorators.InitTaskManagerDecoratorTest#testNodeAffinity
       - name: Test with NonDex
