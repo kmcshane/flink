@@ -137,8 +137,11 @@ public class InitTaskManagerDecorator extends AbstractKubernetesStepDecorator {
     }
 
     private NodeAffinity generateNodeAffinity(String labelKey, Set<String> blockedNodes) {
+        List<String> blockedNodesList = new ArrayList<>(blockedNodes);
+        Collections.sort(blockedNodesList);
+
         NodeSelectorRequirement nodeSelectorRequirement =
-                new NodeSelectorRequirement(labelKey, "NotIn", new ArrayList<>(blockedNodes));
+                new NodeSelectorRequirement(labelKey, "NotIn", blockedNodesList);
 
         NodeAffinityBuilder nodeAffinityBuilder = new NodeAffinityBuilder();
         return nodeAffinityBuilder
