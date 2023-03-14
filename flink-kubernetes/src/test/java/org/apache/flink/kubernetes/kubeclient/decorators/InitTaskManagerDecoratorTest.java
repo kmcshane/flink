@@ -272,8 +272,7 @@ class InitTaskManagerDecoratorTest extends KubernetesTaskManagerTestBase {
 
     @Test
     void testNodeAffinity() {
-        List<String> blockedNodesList = 
-            new ArrayList<>(BLOCKED_NODES);
+        List<String> blockedNodesList = new ArrayList<>(BLOCKED_NODES);
         Collections.sort(blockedNodesList);
 
         List<NodeSelectorTerm> nodeSelectorTerms =
